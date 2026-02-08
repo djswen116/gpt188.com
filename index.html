@@ -70,6 +70,67 @@
       font-size:14px;
       line-height:1.6;
     }
+
+    .holiday-note{
+      margin-top:10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.6px;
+      color:rgba(255,255,255,.98);
+      background:linear-gradient(135deg, rgba(37,99,235,.92), rgba(239,68,68,.92));
+      border:1px solid rgba(255,255,255,.26);
+      box-shadow: 0 14px 34px rgba(17,24,39,.16);
+      position:relative;
+      overflow:hidden;
+      animation: holidayBreath 2.8s ease-in-out infinite;
+      transform-origin:center;
+      will-change: transform, filter;
+    }
+    .holiday-note::before{
+      content:"🧧";
+      line-height:1;
+      font-size:14px;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,.18));
+    }
+    .holiday-note::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:999px;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.00) 35%,
+        rgba(255,255,255,0.22) 50%,
+        rgba(255,255,255,0.00) 65%,
+        transparent 100%
+      );
+      transform: translateX(-55%);
+      opacity:0;
+      pointer-events:none;
+      animation: holidayShine 4.6s ease-in-out infinite;
+    }
+    @keyframes holidayBreath{
+      0%,100%{ transform: translateY(0) scale(1); filter: brightness(1); }
+      50%{ transform: translateY(-1px) scale(1.01); filter: brightness(1.04); }
+    }
+    @keyframes holidayShine{
+      0%{ transform: translateX(-55%); opacity:0; }
+      12%{ opacity:.55; }
+      28%{ transform: translateX(55%); opacity:0; }
+      100%{ transform: translateX(55%); opacity:0; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .holiday-note{ animation:none; }
+      .holiday-note::after{ animation:none; }
+    }
+
     .content{
       padding:22px 26px 26px;
       display:grid;
@@ -231,6 +292,7 @@
           <p class="sub">
             为避免影响下单与服务，请根据以下指引进行操作。
           </p>
+          <div class="holiday-note">过年不打烊，客服正常在线！</div>
         </div>
       </header>
 
@@ -308,7 +370,7 @@
 
       <footer class="footer">
         <span>© <span id="year"></span> 服务通告</span>
-<span>请保存客服联系方式，以便及时获取最新入口，防止失联</span>
+        <span>请保存客服联系方式，以便及时获取最新入口，防止失联</span>
       </footer>
     </section>
 
@@ -316,10 +378,7 @@
   </main>
 
   <script>
-    // 年份
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // 复制客服号
     const textToCopy = "82765536";
     const btn = document.getElementById('copyBtn');
     const toast = document.getElementById('toast');
@@ -336,7 +395,6 @@
         await navigator.clipboard.writeText(textToCopy);
         showToast("已复制：82765536");
       }catch(e){
-        // 兼容旧浏览器
         const ta = document.createElement('textarea');
         ta.value = textToCopy;
         ta.style.position = 'fixed';
@@ -358,6 +416,7 @@
           integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
           data-cf-beacon='{"version":"2024.11.0","token":"a661f215a3544d818228e20d19489f79","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
           crossorigin="anonymous"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a661f215a3544d818228e20d19489f79","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a661f215a3544d818228e20d19489f79","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a661f215a3544d818228e20d19489f79","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
